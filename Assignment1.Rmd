@@ -1,0 +1,62 @@
+---
+title: "Assignment1"
+output: html_document
+---
+ 
+
+```{r}
+src="https://github.com/DrRaquelSanchez/WACountyCaBurden/blob/main/WaCaTotal.csv"
+```
+
+```{r}
+base1=ggplot(data=WaCaTotal, aes(x=County,Total.Deaths))
+bar1=base1+geom_bar(stat = "identity")
+bar1
+```
+
+```{r}
+WaCaTotal_St=WaCaTotal[order(-WaCaTotal$Total.Deaths),]
+WaCaTotal_St$Percent=((WaCaTotal_St$Total.Deaths/sum(WaCaTotal_St$Total.Deaths)))
+
+WaCaTotal_St$Percents=(WaCaTotal_St$Percent)*100
+
+head(WaCaTotal_St,5)
+```
+
+```{r}
+Top5DF=head(WaCaTotal_St,5)
+
+base1=ggplot(data=Top5DF, aes(x=County,Percents))
+
+base2=base1+scale_x_discrete(limits=Top5DF$County)
+
+bar2=base2  +geom_bar(fill="pink", stat = "identity")
+bar2
+```
+```{r}
+titleText1='Washington Distribution of Top 3 Ca, By County'
+subtitle1='Breast, Colorectal, Lung Ca'
+sourceText1='Source: Center for Disease Control'
+
+bar3 = bar2 + labs(title=titleText1,
+                     x ="County", 
+                     y = "Percent",
+                     caption = sourceText1) 
+bar3
+```
+```{r}
+bar4 = bar3 + scale_y_continuous(breaks=c(0,10,20,30),
+                                   limits = c(0,30),
+                                  labels=unit_format(suffix = '%'))
+bar4
+```
+```{r}
+
+LABELS=paste0(round(Top5DF$Percents,2), '%')
+bar5 = bar4 + geom_text(vjust=-0.5, 
+                          size = 5,
+                          aes(x=County, y = Percent ,
+                              label = LABELS))
+
+bar5
+```
