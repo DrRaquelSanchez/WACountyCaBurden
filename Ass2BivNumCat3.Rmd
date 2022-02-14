@@ -1,0 +1,39 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+```{r}
+
+src=('https://github.com/DrRaquelSanchez/WACountyCaBurden/raw/main/CtyCommBdn30.csv')
+
+CtyCommBdn30=read.csv(src)
+```
+
+
+```{r}
+library(reshape2)
+CtyCommBdn30Long=melt(CtyCommBdn30, id.vars=c("Country"))
+CtyCommBdn30Long
+
+CtyCommBdn30Long$value=CtyCommBdn30Long$value*100
+```
+```{r}
+CtyCommBdn30Long[order(~CtyCommBdn30Long$value),c('Country','value')]
+CtyCommBdn30Long$DALY=CtyCommBdn30Long$value
+CtyCommBdn30Long$Communicable_Diseae=CtyCommBdn30Long$variable
+```
+```{r}
+summary(CtyCommBdn30Long)
+```
+```{r}
+library(ggplot2)
+base=ggplot(data=CtyCommBdn30Long,
+            aes(x=Communicable_Diseae,y=DALY))
+         
+
+base + geom_boxplot(color="blue",outlier.color="black")+ labs(title = "Communicable Diseases Producing Highest Burden of Disease") + labs(caption="World Health Organization")
+
+
+```

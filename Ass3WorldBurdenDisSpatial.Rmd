@@ -1,0 +1,53 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+src='https://github.com/DrRaquelSanchez/WACountyCaBurden/raw/main/CtyBdn30.csv'
+CtyBdn30=read.csv(src)
+```
+
+```{r}
+str(CtyBdn30)
+```
+```{r}
+linkMap="https://github.com/EvansDataScience/VAforPM_Spatial/raw/main/worldMap.geojson" 
+
+library(sf)
+mapWorld=read_sf(linkMap)
+```
+
+```{r}
+head(mapWorld)
+```
+```{r}
+CtyBdn30Map=merge(mapWorld, #map first
+                   CtyBdn30, 
+                   by.x='NAME',by.y='Country') 
+```
+
+```{r}
+library(ggplot2)
+# plot original map
+base=ggplot(data=mapWorld) + geom_sf(fill='grey90',
+                                     color=NA) + theme_classic()
+
+base #base map
+```
+
+```{r}
+colMap= base + geom_sf(data=CtyBdn30Map,
+                       color='blue')
+colMap
+
+```
+
+
+```{r}
+colMap + labs(title="Top 30 Countries with Highest Burden of Disease") + labs(caption="World Health Organization")
+
+
+```
+```

@@ -1,0 +1,92 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+```{r}
+src='https://github.com/DrRaquelSanchez/WACountyCaBurden/raw/main/CtyComNCD30.csv'
+
+CtyComNCD30=read.csv(src)
+
+
+```
+
+
+```{r}
+summary(CtyComNCD30)
+```
+
+```{r}
+library(magrittr) # for %>%
+CtyComNCD30[order(-CtyComNCD30$Com),c('Country','Com')]%>%head(20)
+```
+
+
+```{r}
+CtyComNCD30=CtyComNCD30[CtyComNCD30$Com>0.3,]
+
+library(reshape2)
+CtyComNCD30Long=melt(CtyComNCD30, id.vars=c("Country"))
+CtyComNCD30Long
+
+CtyComNCD30Long$value=CtyComNCD30Long$value*100
+```
+
+```{r}
+library(ggplot2)
+base=ggplot(data=CtyComNCD30Long,
+            aes(x=Country,y=value))
+
+base + geom_boxplot()
+```
+
+```{r}
+
+library(ggpubr)
+
+base7=ggplot(data=CtyComNCD30Long[CtyComNCD30Long$value>=20,],
+            aes(x=Country,y=value)) 
+box7=base7 + geom_boxplot() + labs(title = "20 and above")
+
+base30=ggplot(data=CtyComNCD30Long[CtyComNCD30Long$value>=30,],
+            aes(x=Country,y=value))
+box30=base30 + geom_boxplot() + labs(title = "30 and above")
+
+base180=ggplot(data=CtyComNCD30Long[CtyComNCD30Long$value>=40,],
+            aes(x=Country,y=value)) 
+box180=base180 + geom_boxplot() + labs(title = "40 and above")
+
+base365=ggplot(data=CtyComNCD30Long[CtyComNCD30Long$value>=50,],
+            aes(x=Country,y=value)) 
+box365=base365 + geom_boxplot() + labs(title = "50 and above")
+
+ggarrange(box7,box30,box180,box365)
+
+```
+
+```{r}
+baseYear=ggplot(data=CtyComNCD30Long,
+            aes(x=Country,
+                y=value)) 
+boxYear=baseYear + geom_boxplot() + labs(title = "")
+# flipping
+boxYear  + coord_flip()
+```
+
+```{r}
+
+baseYear=ggplot(data=CtyComNCD30Long,
+            aes(x=reorder(Country,
+                          value,
+                          median),
+                y=value)) 
+boxYear=baseYear + geom_boxplot(color="blue",outlier.color="black") + labs(title = "Total % Burden of Disease for Top 20 ")
+
+
+boxYear  + coord_flip() + labs(x="Country",y="DALY") + labs(caption="World Health Organization") 
+```
+
+
+
+
