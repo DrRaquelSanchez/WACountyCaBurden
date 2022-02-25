@@ -1,31 +1,61 @@
 ﻿Country,variable,value
-Somalia,Com,51
-Central African Republic,Com,50
-Chad,Com,48
-Nigeria,Com,44
-Lesotho,Com,43
-Sierra Leone,Com,39
-Mali,Com,39
-South Sudan,Com,39
-Mozambique,Com,38
-Guinea,Com,38
-Niger,Com,38
-DRC,Com,38
-Guinea-Bissau,Com,34
-Equatorial Guinea,Com,34
-Burkina Faso,Com,33
-Benin,Com,33
-Angola,Com,33
-Liberia,Com,33
-Côte d'Ivoire,Com,32
-Cameroon,Com,30
-Zambia,Com,29
-Eswatini,Com,28
-Burundi,Com,26
-Zimbabwe,Com,25
-Togo,Com,25
-Botswana,Com,24
-South Africa,Com,19
-Kiribati,Com,16
-Haiti,Com,16
-Guyana,Com,10
+Lesotho,Com,0.43
+Central African Republic,Com,0.5
+Somalia,Com,0.51
+Chad,Com,0.48
+Nigeria,Com,0.44
+Mozambique,Com,0.38
+Sierra Leone,Com,0.39
+Mali,Com,0.39
+Guinea,Com,0.38
+Niger,Com,0.38
+Democratic Republic of the Congo,Com,0.38
+South Sudan,Com,0.39
+Eswatini,Com,0.28
+Guinea-Bissau,Com,0.34
+Burkina Faso,Com,0.33
+Benin,Com,0.33
+Kiribati,Com,0.16
+Equatorial Guinea,Com,0.34
+Côte d'Ivoire,Com,0.32
+Cameroon,Com,0.3
+Angola,Com,0.33
+Liberia,Com,0.33
+Botswana,Com,0.24
+Zimbabwe,Com,0.25
+Zambia,Com,0.29
+Burundi,Com,0.26
+South Africa,Com,0.19
+Haiti,Com,0.16
+Togo,Com,0.25
+Guyana,Com,0.1
+Lesotho,Noncom,0.32
+Central African Republic,Noncom,0.19
+Somalia,Noncom,0.17
+Chad,Noncom,0.16
+Nigeria,Noncom,0.15
+Mozambique,Noncom,0.18
+Sierra Leone,Noncom,0.17
+Mali,Noncom,0.15
+Guinea,Noncom,0.16
+Niger,Noncom,0.15
+Democratic Republic of the Congo,Noncom,0.16
+South Sudan,Noncom,0.13
+Eswatini,Noncom,0.21
+Guinea-Bissau,Noncom,0.16
+Burkina Faso,Noncom,0.16
+Benin,Noncom,0.17
+Kiribati,Noncom,0.34
+Equatorial Guinea,Noncom,0.16
+Côte d'Ivoire,Noncom,0.16
+Cameroon,Noncom,0.17
+Angola,Noncom,0.15
+Liberia,Noncom,0.14
+Botswana,Noncom,0.19
+Zimbabwe,Noncom,0.16
+Zambia,Noncom,0.14
+Burundi,Noncom,0.14
+South Africa,Noncom,0.21
+Haiti,Noncom,0.24
+Togo,Noncom,0.16
+Guyana,Noncom,0.27
