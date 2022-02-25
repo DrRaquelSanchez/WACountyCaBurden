@@ -1,0 +1,82 @@
+---
+title: "Ass1WorldBdnDash"
+author: "Raquel"
+date: "2/25/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r cars}
+src='https://github.com/DrRaquelSanchez/WACountyCaBurden/raw/48f1ccb3745bc7e284f18f3c2a4917f4a2554694/CtyCommBdn30dash.csv'
+
+CtyCommBdn30dash=read.csv(src)
+```
+
+
+```{r}
+CtyCommBdn30dash=CtyCommBdn30dash[order(CtyCommBdn30dash$DALY),]
+head(CtyCommBdn30dash)
+```
+
+```{r}
+(diseaseOrd=CtyCommBdn30dash[order(CtyCommBdn30dash$DALY),'Communicable_Disease'])
+
+```
+
+
+```{r}
+paste0(round(CtyCommBdn30dash$DALY,2))
+```
+
+
+
+```{r}
+library(ggplot2)
+
+
+base= ggplot(data = CtyCommBdn30dash, 
+             aes(x = Communicable_Disease,y = DALY)) 
+
+base= base + scale_x_discrete(limits=diseaseOrd) 
+base= base + theme_classic()
+
+bar1=base+geom_bar(fill="blue", stat = "identity")
+
+bar1
+```
+
+```{r}
+
+paste0(round(CtyCommBdn30dash$DALY,2))
+
+LABELS=paste0(round(CtyCommBdn30dash$DALY,2))
+
+titleText1='Global DALY Scores of Top Communicable Diseases'
+sourceText1='Source: World Health Organization'
+
+bar2=bar1 + labs(title=titleText1,
+                     x ="Communicable_Disease", 
+                     y = "DALY",
+                     caption = sourceText1,
+                      label = LABELS) + 
+  scale_y_continuous(breaks=c(0.0,0.25,0.5,0.75,1.0, 1.25, 1.5, 1.75),
+                                   limits = c(0,1.75))
+
+bar2
+```
+
+
+```{r}
+LABELS=paste0(round(CtyCommBdn30dash$DALY,2))
+bar3 = bar2 + geom_text(vjust=-0.5, 
+                          size = 5,
+                          aes(x= Communicable_Disease, y = DALY ,
+                              label = LABELS))
+
+
+bar3
+```
+
